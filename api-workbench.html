@@ -1,18 +1,600 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#191310"><meta name="description" content="API Workbench is an API testing and working platform in development by Hemant Singh."><title>API Workbench | bitsMAYA</title><style>
-    :root{--bg:#191310;--panel:#241b17;--ink:#fff4e9;--muted:#cbbab0;--lime:#ffad66;--line:#49372d;--radius:22px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}a{color:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible{outline:3px solid var(--lime);outline-offset:6px}::selection{background:var(--lime);color:var(--bg)}
-    .wrap{max-width:1180px;margin:auto;padding:0 32px}.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid var(--line);gap:22px}.brand{text-decoration:none;font-size:29px;letter-spacing:-1.6px;white-space:nowrap}.brand span{font-weight:300}.brand strong{color:var(--lime)}.navlinks{display:flex;gap:28px;font-size:13px}.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--lime)}
-    .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:50px;padding:88px 0 78px}.eyebrow,.label{font:11px/1.5 'Courier New',monospace;letter-spacing:2px;text-transform:uppercase}.eyebrow{color:var(--lime);display:flex;align-items:center;gap:10px}.dot{width:7px;height:7px;background:var(--lime);border-radius:50%;display:inline-block}h1{font-size:clamp(46px,5.7vw,76px);line-height:1.04;letter-spacing:-4px;margin:25px 0}h1 em{font-style:normal;color:var(--lime)}.hero p{max-width:460px;color:var(--muted);font-size:16px;margin:0 0 28px}.buttons{display:flex;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;gap:28px;text-decoration:none;border-radius:8px;padding:13px 20px;font-size:13px;font-weight:700;background:var(--lime);color:var(--bg);border:1px solid var(--lime)}.button.secondary{background:transparent;color:var(--ink);border-color:var(--line)}.button:hover{filter:brightness(1.12)}
-    .hero-art{height:365px;position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#57321f 0,transparent 65%)}.orbit{position:absolute;width:295px;height:295px;border:1px solid #754b33;border-radius:50%}.orbit.two{width:365px;height:205px;transform:rotate(-35deg)}.mark{font:bold 190px/1 Arial;letter-spacing:-25px;color:var(--lime);transform:rotate(-8deg);padding-right:20px}.art-tag{position:absolute;background:var(--panel);border:1px solid #865638;padding:10px 16px;border-radius:8px;font:12px 'Courier New',monospace}.tag-one{top:35px;right:16px;transform:rotate(5deg)}.tag-two{bottom:36px;left:10px;transform:rotate(-5deg)}.art-caption{position:absolute;bottom:0;color:var(--muted);font:10px 'Courier New',monospace;letter-spacing:2px}
-    .section-top{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:27px}.section-top h2{font-size:32px;letter-spacing:-1px;line-height:1.2;margin:8px 0 0}.section-top p{font-size:13px;color:var(--muted);margin:0}.label{color:var(--muted)}.projects{padding:12px 0 80px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}.visual{height:260px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.visual svg{width:100%;height:100%}.kho-visual{background:#f2bf91}.visual-note{position:absolute;bottom:15px;left:20px;font:10px 'Courier New',monospace;letter-spacing:1.4px;color:#5b321b}.card-body{padding:27px 29px}.meta{display:flex;justify-content:space-between;align-items:center;gap:12px;font:10px 'Courier New',monospace;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted)}.status{border:1px solid #895731;background:#462b1b;color:var(--lime);padding:5px 9px;border-radius:5px;white-space:nowrap}.status.upcoming{color:#d9c1e9;background:#33263b;border-color:#624c70}.card h3{font-size:30px;letter-spacing:-1px;margin:18px 0 10px;line-height:1.2}.card p{font-size:14px;color:var(--muted);margin:0;max-width:470px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.tags span{font:11px 'Courier New',monospace;border:1px solid #604535;border-radius:4px;padding:5px 8px;color:#e0cbbb}
-    .api-visual{background:#dce4ec;padding:28px}.terminal{width:100%;max-width:410px;border-radius:10px;background:#18232e;box-shadow:0 20px 35px #27384830;overflow:hidden;transform:rotate(-2deg)}.terminal-bar{background:#25333f;padding:12px 16px;display:flex;align-items:center;gap:6px}.terminal-bar i{width:7px;height:7px;border-radius:50%;background:#6c808f}.terminal-bar span{margin-left:auto;color:#b2c1cb;font:10px 'Courier New',monospace}.request{margin:20px 18px 12px;display:flex;gap:12px;background:#263542;border:1px solid #3d5263;padding:10px;color:#cbd9e5;font:12px 'Courier New',monospace}.request b{color:#ffbc7e}.response{padding:0 18px 20px;color:#abc3d6;font:12px/1.7 'Courier New',monospace}.response .ok{color:#ffbc7e}.response .key{color:#ffc18b}.api-visual .visual-note{color:#4c6073}
-    .horror{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;background:#19171e;border-color:#3d3545}.horror .visual{height:100%;min-height:300px;background:radial-gradient(ellipse at 50% 70%,#493250,transparent 70%),#15121a}.door{width:112px;height:198px;background:linear-gradient(100deg,#8d719c,#3c2b45 35%,#131017 36%);border:1px solid #79548a;box-shadow:0 0 80px #8961a933;position:relative;transform:perspective(600px) rotateY(-15deg)}.door:after{content:'';position:absolute;bottom:-24px;left:-46px;width:200px;height:25px;background:linear-gradient(180deg,#6b4878,transparent);filter:blur(12px)}.horror-title{position:absolute;letter-spacing:14px;font-size:35px;font-weight:bold;bottom:24px;padding-left:14px;color:#e9ddee}.horror .visual-note{top:20px;bottom:auto;color:#b6a3c1}.horror .card-body{display:flex;flex-direction:column;justify-content:center;padding:36px}.horror .tags span{border-color:#4b3e55}.horror p{color:#c1b7c9}
-    .about{display:grid;grid-template-columns:1fr 1.5fr;gap:70px;border-top:1px solid var(--line);padding:58px 0}.about h2{font-size:37px;line-height:1.15;letter-spacing:-1.5px;margin:15px 0}.about p{color:var(--muted);font-size:15px;margin:0 0 18px}.signature{color:var(--lime);font:13px 'Courier New',monospace}.contact{padding:38px;background:var(--lime);color:var(--bg);border-radius:var(--radius);display:flex;align-items:center;justify-content:space-between;gap:30px}.contact h2{font-size:29px;letter-spacing:-1px;margin:0 0 8px}.contact p{font-size:14px;margin:0;max-width:590px;color:#56311a}.contact .button{background:var(--bg);color:var(--lime);border-color:var(--bg);white-space:nowrap}footer{display:flex;justify-content:space-between;gap:20px;padding:32px 0;font:11px 'Courier New',monospace;color:var(--muted)}.skip{position:absolute;top:-70px;left:16px;background:var(--lime);color:var(--bg);padding:12px;z-index:5}.skip:focus{top:10px}
-    @media(min-width:1500px){.hero{padding-top:105px}}
-    @media(max-width:800px){.hero{gap:20px;padding:60px 0}.hero-art{height:285px}.orbit{width:230px;height:230px}.orbit.two{width:260px;height:170px}.mark{font-size:150px}.art-tag{font-size:10px;padding:8px}.tag-one{right:0}.tag-two{left:0}h1{letter-spacing:-2.8px}.about{gap:35px}.contact{padding:28px}}
-    @media(max-width:600px){.wrap{padding:0 20px}.nav{padding:21px 0}.brand{font-size:26px}.navlinks{gap:16px;font-size:12px}.hero{grid-template-columns:1fr;padding:48px 0 40px;gap:30px}h1{font-size:52px;max-width:400px}.hero-art{height:260px;max-width:340px;width:100%;margin:auto}.tag-one{right:5px;top:15px}.tag-two{left:0;bottom:28px}.section-top{align-items:start;flex-direction:column;gap:12px}.section-top h2{font-size:29px}.grid{grid-template-columns:1fr;gap:20px}.visual{height:235px}.card-body{padding:24px}.horror{grid-template-columns:1fr}.horror .visual{min-height:270px}.horror .card-body{padding:26px}.projects{padding-bottom:48px}.about{grid-template-columns:1fr;gap:16px;padding:38px 0}.about h2{font-size:32px}.contact{flex-direction:column;align-items:start;padding:26px;gap:22px}.contact h2{font-size:26px}footer{flex-direction:column;gap:8px;padding:26px 0}.meta{font-size:9px;letter-spacing:1px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191310">
+  <meta name="description" content="API Workbench is a fast, local-first API testing and debugging platform by Hemant Singh (bitsMAYA).">
   
-    .project-title{text-decoration:none}.project-title:hover{color:var(--lime)}.project-link{display:inline-flex;gap:20px;margin-top:24px;color:var(--lime);font-size:13px;text-decoration:none;border-bottom:1px solid #865638;padding-bottom:4px}.footer-links{display:flex;gap:20px}.footer-links a{text-underline-offset:4px}.page-hero{padding:60px 0 45px;max-width:850px}.back{font:12px 'Courier New',monospace;color:var(--muted);text-decoration:none}.page-hero h1{margin:22px 0;font-size:clamp(46px,7vw,82px)}.page-hero .lead{font-size:20px;color:var(--muted);max-width:700px;line-height:1.6}.wide-art{border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-bottom:38px}.wide-art .visual{height:350px}.detail-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;margin-bottom:48px}.detail-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px}.detail-panel h2{font-size:25px;line-height:1.25;margin:0 0 16px;letter-spacing:-.7px}.detail-panel h3{font-size:17px;margin:26px 0 8px}.detail-panel p,.detail-panel li{font-size:15px;color:var(--muted)}.detail-panel p{margin:0 0 15px}.detail-panel p:last-child{margin-bottom:0}.detail-panel dl{margin:0}.detail-panel dt{font:10px 'Courier New',monospace;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-top:20px}.detail-panel dt:first-child{margin-top:0}.detail-panel dd{margin:4px 0 0;font-size:15px}.notice{border-left:3px solid var(--lime);padding:15px 20px;background:#37251b;border-radius:0 8px 8px 0;margin:24px 0;color:#f4d4bb;font-size:14px}.related{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 45px}.policy{max-width:850px;margin-bottom:48px}.policy .detail-panel{margin-bottom:20px}.wide-art .horror-title{font-size:42px;bottom:26px}.wide-art .terminal{max-width:520px}.wide-art .hero-art{height:350px}.page-hero .label{margin-top:28px}.page-hero .status{display:inline-block}.detail-panel a{color:var(--lime);text-underline-offset:4px}@media(max-width:600px){.page-hero{padding:35px 0 25px}.page-hero h1{font-size:48px;letter-spacing:-2.5px}.page-hero .lead{font-size:17px}.wide-art .visual{height:250px}.detail-grid{grid-template-columns:1fr;gap:18px;margin-bottom:30px}.detail-panel{padding:24px}.footer-links{flex-wrap:wrap;gap:15px}}
-  </style></head><body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="nav"><a class="brand" href="index.html" aria-label="bitsMAYA home"><span>bits</span><strong>MAYA</strong></a><nav class="navlinks" aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav></header><main id="main"><section class="page-hero"><a class="back" href="index.html#projects">← Back to projects</a><div class="label">02 / The developer platform</div><h1>API Workbench</h1><p class="lead">A workspace for the conversation<br>between request and response.</p><span class="status ">In development</span></section><div class="wide-art"><div class="visual api-visual"><div class="terminal" aria-hidden="true"><div class="terminal-bar"><i></i><i></i><i></i><span>API WORKBENCH</span></div><div class="request"><b>GET</b><span>/api/possibilities</span></div><div class="response"><span class="ok">200 OK</span><br>{<br>&nbsp; <span class="key">"idea"</span>: "build something",<br>&nbsp; <span class="key">"status"</span>: "in progress",<br>&nbsp; <span class="key">"possibilities"</span>: "endless"<br>}</div></div><span class="visual-note">CONCEPT ILLUSTRATION / REQUEST → RESPONSE</span></div>
-            </div><div class="detail-grid"><section class="detail-panel"><h2>Make room for your API work.</h2><p>API Workbench is a platform I’m building for testing and working with APIs. It brings a practical developer focus to the bitsMAYA lineup.</p><p>The project centers on API workflows: working with requests, exploring responses, and making sense of the exchange between applications and services.</p><h3>Development updates</h3><p>API Workbench is currently in development. Confirmed features, interface screenshots, platform availability, and access instructions will be shared here as the project progresses.</p><div class="notice">The workspace illustration above is a visual concept. Its example endpoint and response are illustrative.</div></section><aside class="detail-panel"><h2>At a glance</h2><dl><dt>Project</dt><dd>API Workbench</dd><dt>Category</dt><dd>Developer platform</dd><dt>Focus</dt><dd>API testing and API workflows</dd><dt>Developer</dt><dd>Hemant Singh / bitsMAYA</dd><dt>Availability</dt><dd>Not announced</dd></dl></aside></div><div class="label">Explore more from bitsMAYA</div><div class="related"><a class="button secondary" href="khokho.html">KhoKho ↗</a><a class="button secondary" href="anter.html">Anter ↗</a></div></main><footer><span>© 2026 bitsMAYA · Hemant Singh</span><div class="footer-links"><a href="index.html">Home</a><a href="privacy.html">Privacy information</a><a href="https://github.com/sin-hem">GitHub</a></div></footer></div></body></html>
+  <!-- Open Graph / Social Sharing Meta -->
+  <meta property="og:title" content="API Workbench | bitsMAYA">
+  <meta property="og:description" content="A distraction-free workspace for the conversation between request and response.">
+  <meta property="og:type" content="website">
+  
+  <title>API Workbench — Developer Platform | bitsMAYA</title>
+  <style>
+    :root {
+      --bg: #191310;
+      --panel: #241b17;
+      --panel-hover: #2c211c;
+      --ink: #fff4e9;
+      --muted: #cbbab0;
+      --lime: #ffad66;
+      --lime-dim: rgba(255, 173, 102, 0.12);
+      --line: #49372d;
+      --green: #7fe3a1;
+      --blue: #7ec4ff;
+      --purple: #d9a6ff;
+      --radius: 22px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; transition: color 0.2s ease, border-color 0.2s ease; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+    ::selection { background: var(--lime); color: var(--bg); }
+
+    .wrap { max-width: 1180px; margin: auto; padding: 0 32px; }
+    
+    /* Navigation */
+    .skip { position: absolute; top: -70px; left: 16px; background: var(--lime); color: var(--bg); padding: 12px; z-index: 50; border-radius: 6px; font-weight: 700; }
+    .skip:focus { top: 10px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; border-bottom: 1px solid var(--line); gap: 22px; }
+    .brand { text-decoration: none; font-size: 29px; letter-spacing: -1.6px; white-space: nowrap; }
+    .brand span { font-weight: 300; }
+    .brand strong { color: var(--lime); }
+    .navlinks { display: flex; align-items: center; gap: 28px; font-size: 13px; }
+    .navlinks a { text-decoration: none; color: var(--muted); }
+    .navlinks a:hover { color: var(--lime); }
+
+    /* Typography & Badges */
+    .label { font: 11px/1.5 var(--font-mono); letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 11px var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      border: 1px solid #895731;
+      background: #362216;
+      color: var(--lime);
+      padding: 6px 12px;
+      border-radius: 99px;
+    }
+    .status::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 8px var(--lime);
+    }
+
+    /* Buttons */
+    .buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 13px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--lime);
+      color: var(--bg);
+      border: 1px solid var(--lime);
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.15s ease, background 0.15s ease;
+    }
+    .button.secondary { background: var(--panel); color: var(--ink); border-color: var(--line); }
+    .button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .button.secondary:hover { border-color: var(--lime); }
+
+    /* Hero Section */
+    .page-hero {
+      padding: 56px 0 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-copy { max-width: 720px; }
+    .back { font: 12px var(--font-mono); color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 24px; }
+    .back:hover { color: var(--lime); }
+    .page-hero h1 {
+      margin: 14px 0 18px;
+      font-size: clamp(46px, 6.8vw, 80px);
+      line-height: 1.02;
+      letter-spacing: -3.5px;
+    }
+    .page-hero .lead { font-size: 20px; color: var(--muted); max-width: 600px; line-height: 1.55; margin: 0; }
+
+    /* Interactive Workbench Preview */
+    .workbench-shell {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #141920;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      margin-bottom: 64px;
+    }
+    .wb-topbar {
+      background: #1c242e;
+      border-bottom: 1px solid #2d3947;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .wb-dots { display: flex; gap: 7px; align-items: center; }
+    .wb-dots i { width: 10px; height: 10px; border-radius: 50%; background: #455668; display: inline-block; }
+    .wb-dots i:first-child { background: #e06c75; }
+    .wb-dots i:nth-child(2) { background: #e5c07b; }
+    .wb-dots i:nth-child(3) { background: #98c379; }
+    .wb-title { font: 11px var(--font-mono); color: #9ab0c4; letter-spacing: 1.5px; }
+    .wb-presets { display: flex; gap: 8px; flex-wrap: wrap; }
+    .preset-btn {
+      background: #25303d;
+      border: 1px solid #38485a;
+      color: #c7d6e5;
+      font: 11px var(--font-mono);
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .preset-btn:hover, .preset-btn.active {
+      background: var(--lime);
+      color: var(--bg);
+      border-color: var(--lime);
+      font-weight: 700;
+    }
+
+    .wb-bar {
+      display: flex;
+      gap: 10px;
+      padding: 16px 20px;
+      background: #182029;
+      border-bottom: 1px solid #283442;
+      align-items: center;
+    }
+    .method-badge {
+      font: 700 12px var(--font-mono);
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: rgba(255, 173, 102, 0.15);
+      color: var(--lime);
+      border: 1px solid rgba(255, 173, 102, 0.35);
+      min-width: 68px;
+      text-align: center;
+    }
+    .url-box {
+      flex: 1;
+      background: #11171d;
+      border: 1px solid #2e3d4d;
+      border-radius: 6px;
+      padding: 8px 14px;
+      color: #e3edf7;
+      font: 13px var(--font-mono);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .send-btn {
+      background: var(--lime);
+      color: var(--bg);
+      border: none;
+      border-radius: 6px;
+      padding: 9px 18px;
+      font: 700 12px var(--font-mono);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+    .send-btn:hover { filter: brightness(1.1); }
+
+    .wb-panes {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      min-height: 290px;
+    }
+    .wb-pane { padding: 20px; font: 12.5px/1.7 var(--font-mono); color: #b9cce0; }
+    .wb-pane + .wb-pane { border-left: 1px solid #283442; background: #11161c; }
+    .pane-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #232e3a;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #7c93a8;
+    }
+    .meta-pills { display: flex; gap: 10px; }
+    .pill-ok { color: var(--green); background: rgba(127, 227, 161, 0.12); padding: 2px 8px; border-radius: 4px; }
+    .pill-meta { color: #9ab0c4; background: #1d2630; padding: 2px 8px; border-radius: 4px; }
+    pre { margin: 0; white-space: pre-wrap; word-break: break-word; }
+    .k { color: var(--lime); }
+    .s { color: var(--green); }
+    .n { color: var(--blue); }
+    .b { color: var(--purple); }
+
+    /* Features Bento Grid */
+    .section-header { margin-bottom: 28px; }
+    .section-header h2 { font-size: 32px; letter-spacing: -1px; margin: 8px 0 0; }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-bottom: 64px;
+    }
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .feature-card:hover { transform: translateY(-3px); border-color: #78533d; }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--lime-dim);
+      border: 1px solid #6b472d;
+      color: var(--lime);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 15px var(--font-mono);
+      margin-bottom: 18px;
+    }
+    .feature-card h3 { font-size: 20px; margin: 0 0 10px; letter-spacing: -0.5px; }
+    .feature-card p { font-size: 14.5px; color: var(--muted); margin: 0; }
+
+    /* Details & Specs Grid */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 28px;
+      margin-bottom: 64px;
+    }
+    .detail-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 32px;
+    }
+    .detail-panel h2 { font-size: 25px; line-height: 1.25; margin: 0 0 16px; letter-spacing: -0.7px; }
+    .detail-panel h3 { font-size: 17px; margin: 28px 0 12px; }
+    .detail-panel p { font-size: 15px; color: var(--muted); margin: 0 0 15px; }
+    .detail-panel p:last-child { margin-bottom: 0; }
+    .detail-panel dl { margin: 0; }
+    .detail-panel dt { font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-top: 18px; }
+    .detail-panel dt:first-child { margin-top: 0; }
+    .detail-panel dd { margin: 4px 0 0; font-size: 15px; font-weight: 500; }
+
+    /* Roadmap List */
+    .roadmap { list-style: none; padding: 0; margin: 16px 0 0; }
+    .roadmap li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+    .roadmap li:last-child { border-bottom: none; }
+    .rm-tag {
+      font: 10px var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .rm-done { background: rgba(127, 227, 161, 0.14); color: var(--green); border: 1px solid rgba(127, 227, 161, 0.3); }
+    .rm-wip { background: var(--lime-dim); color: var(--lime); border: 1px solid #895731; }
+    .rm-next { background: #2f2520; color: var(--muted); border: 1px solid var(--line); }
+
+    .notice {
+      border-left: 3px solid var(--lime);
+      padding: 15px 20px;
+      background: #312118;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0 0;
+      color: #f4d4bb;
+      font-size: 14px;
+    }
+
+    /* Footer & Related */
+    .related { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 54px; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      font: 11px var(--font-mono);
+      color: var(--muted);
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { text-underline-offset: 4px; }
+    .footer-links a:hover { color: var(--lime); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .wb-panes { grid-template-columns: 1fr; }
+      .wb-pane + .wb-pane { border-left: none; border-top: 1px solid #283442; }
+      .detail-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 20px; }
+      .page-hero { padding: 36px 0 28px; }
+      .page-hero h1 { font-size: 46px; letter-spacing: -2.2px; }
+      .wb-bar { flex-wrap: wrap; }
+      .url-box { width: 100%; order: 3; }
+      .detail-panel, .feature-card { padding: 22px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="index.html" aria-label="bitsMAYA home"><span>bits</span><strong>MAYA</strong></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="index.html#projects">Projects</a>
+        <a href="#features">Features</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="https://github.com/sin-hem" target="_blank" rel="noopener">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- Hero Section -->
+      <section class="page-hero">
+        <div class="hero-copy">
+          <a class="back" href="index.html#projects">← Back to projects</a>
+          <div class="label">02 / The Developer Platform</div>
+          <h1>API Workbench</h1>
+          <p class="lead">A fast, distraction-free workspace for crafting requests, inspecting payloads, and debugging the conversation between client and server.</p>
+          <div class="buttons">
+            <a class="button" href="#interactive-demo">Try Interactive Preview ↓</a>
+            <a class="button secondary" href="https://github.com/sin-hem" target="_blank" rel="noopener">Follow on GitHub ↗</a>
+          </div>
+        </div>
+        <div>
+          <span class="status">In Active Development</span>
+        </div>
+      </section>
+
+      <!-- Interactive Workbench Mockup -->
+      <section id="interactive-demo" class="workbench-shell" aria-label="Interactive API Workbench concept">
+        <div class="wb-topbar">
+          <div class="wb-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="wb-title">API WORKBENCH // SANDBOX PREVIEW</div>
+          <div class="wb-presets" role="group" aria-label="Preset API requests">
+            <button type="button" class="preset-btn active" data-preset="possibilities">GET /possibilities</button>
+            <button type="button" class="preset-btn" data-preset="auth">POST /auth/token</button>
+            <button type="button" class="preset-btn" data-preset="health">GET /system/health</button>
+          </div>
+        </div>
+
+        <div class="wb-bar">
+          <span id="wb-method" class="method-badge">GET</span>
+          <div id="wb-url" class="url-box">https://api.bitsmaya.dev/v1/possibilities</div>
+          <button type="button" id="wb-send" class="send-btn">Send Request</button>
+        </div>
+
+        <div class="wb-panes">
+          <div class="wb-pane">
+            <div class="pane-head">
+              <span>Request Headers &amp; Body</span>
+              <span>application/json</span>
+            </div>
+            <pre id="wb-req"></pre>
+          </div>
+          <div class="wb-pane">
+            <div class="pane-head">
+              <span>Response Payload</span>
+              <div class="meta-pills">
+                <span id="wb-status" class="pill-ok">200 OK</span>
+                <span id="wb-time" class="pill-meta">38 ms</span>
+              </div>
+            </div>
+            <pre id="wb-res"></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Capabilities Bento -->
+      <section id="features">
+        <div class="section-header">
+          <div class="label">Architecture &amp; Workflow</div>
+          <h2>Built for clarity, not clutter.</h2>
+        </div>
+        <div class="bento-grid">
+          <article class="feature-card">
+            <div class="feature-icon">&lt;/&gt;</div>
+            <h3>Zero-Bloat Request Builder</h3>
+            <p>Compose REST and GraphQL queries with clean header management, query parameter toggles, and instant auth token injection without nested menu fatigue.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">{ }</div>
+            <h3>Structured Response Inspector</h3>
+            <p>Automatically format deeply nested JSON payloads, inspect response headers, and track latency breakdowns from DNS lookup to payload transfer.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Local-First Collections</h3>
+            <p>Keep your endpoints, environment variables, and secrets on your machine. Organize workflows into portable collections ready for Git version control.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Project Overview & Roadmap -->
+      <div class="detail-grid" id="roadmap">
+        <section class="detail-panel">
+          <h2>Make room for your API work.</h2>
+          <p>API Workbench is a dedicated platform I’m building for testing, documenting, and debugging APIs. It brings a practical, keyboard-first developer focus to the bitsMAYA lineup.</p>
+          <p>Modern API tools have grown into heavy, cloud-locked suites. API Workbench strips away forced workspaces and telemetry to focus purely on the exchange between applications and services.</p>
+          
+          <h3>Development Roadmap</h3>
+          <ul class="roadmap">
+            <li>
+              <span class="rm-tag rm-done">Done</span>
+              <span>Core HTTP request engine &amp; custom response syntax highlighter</span>
+            </li>
+            <li>
+              <span class="rm-tag rm-wip">Building</span>
+              <span>Environment variable interpolation &amp; local collection storage</span>
+            </li>
+            <li>
+              <span class="rm-tag rm-next">Planned</span>
+              <span>One-click cURL / Fetch / Axios code snippet generator</span>
+            </li>
+            <li>
+              <span class="rm-tag rm-next">Planned</span>
+              <span>Public beta release &amp; open-source community extensions</span>
+            </li>
+          </ul>
+
+          <div class="notice">
+            Try clicking the preset buttons or <strong>Send Request</strong> in the sandbox above to preview how API Workbench handles request/response inspection.
+          </div>
+        </section>
+
+        <aside class="detail-panel">
+          <h2>At a glance</h2>
+          <dl>
+            <dt>Project</dt>
+            <dd>API Workbench</dd>
+            <dt>Category</dt>
+            <dd>Developer Platform &amp; API Client</dd>
+            <dt>Protocols</dt>
+            <dd>REST, JSON, GraphQL (Planned)</dd>
+            <dt>Architecture</dt>
+            <dd>Local-first, Lightweight Web &amp; Desktop</dd>
+            <dt>Developer</dt>
+            <dd>Hemant Singh / bitsMAYA</dd>
+            <dt>Release Status</dt>
+            <dd>Internal Alpha · 2026</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="label">Explore more from bitsMAYA</div>
+      <div class="related">
+        <a class="button secondary" href="khokho.html">KhoKho ↗</a>
+        <a class="button secondary" href="anter.html">Anter ↗</a>
+      </div>
+    </main>
+
+    <footer>
+      <span>© 2026 bitsMAYA · Hemant Singh</span>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy information</a>
+        <a href="https://github.com/sin-hem">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const presets = {
+      possibilities: {
+        method: 'GET',
+        url: 'https://api.bitsmaya.dev/v1/possibilities',
+        status: '200 OK',
+        time: '38 ms',
+        req: `// Headers\nAccept: application/json\nUser-Agent: APIWorkbench/0.4.0\n\n// Query Params\n?limit=10&env=dev`,
+        res: `{\n  <span class="k">"project"</span>: <span class="s">"API Workbench"</span>,\n  <span class="k">"status"</span>: <span class="s">"in_development"</span>,\n  <span class="k">"local_first"</span>: <span class="b">true</span>,\n  <span class="k">"possibilities"</span>: <span class="s">"endless"</span>\n}`
+      },
+      auth: {
+        method: 'POST',
+        url: 'https://api.bitsmaya.dev/v1/auth/token',
+        status: '201 Created',
+        time: '64 ms',
+        req: `{\n  <span class="k">"client_id"</span>: <span class="s">"bm_dev_99281"</span>,\n  <span class="k">"grant_type"</span>: <span class="s">"client_credentials"</span>,\n  <span class="k">"scope"</span>: <span class="s">"read:collections write:requests"</span>\n}`,
+        res: `{\n  <span class="k">"access_token"</span>: <span class="s">"eyJhbGciOiJIUzI1NiIsInR..."</span>,\n  <span class="k">"token_type"</span>: <span class="s">"Bearer"</span>,\n  <span class="k">"expires_in"</span>: <span class="n">3600</span>\n}`
+      },
+      health: {
+        method: 'GET',
+        url: 'https://api.bitsmaya.dev/v1/system/health',
+        status: '200 OK',
+        time: '14 ms',
+        req: `// Headers\nCache-Control: no-cache\nX-Request-ID: req_8841a`,
+        res: `{\n  <span class="k">"service"</span>: <span class="s">"workbench-core"</span>,\n  <span class="k">"uptime_seconds"</span>: <span class="n">99420</span>,\n  <span class="k">"latency_p99"</span>: <span class="s">"18ms"</span>,\n  <span class="k">"healthy"</span>: <span class="b">true</span>\n}`
+      }
+    };
+
+    const methodEl = document.getElementById('wb-method');
+    const urlEl = document.getElementById('wb-url');
+    const reqEl = document.getElementById('wb-req');
+    const resEl = document.getElementById('wb-res');
+    const statusEl = document.getElementById('wb-status');
+    const timeEl = document.getElementById('wb-time');
+    const presetBtns = document.querySelectorAll('.preset-btn');
+    const sendBtn = document.getElementById('wb-send');
+
+    let currentKey = 'possibilities';
+
+    function renderPreset(key) {
+      currentKey = key;
+      const item = presets[key];
+      methodEl.textContent = item.method;
+      urlEl.textContent = item.url;
+      reqEl.innerHTML = item.req;
+      resEl.innerHTML = item.res;
+      statusEl.textContent = item.status;
+      timeEl.textContent = item.time;
+    }
+
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        presetBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPreset(btn.dataset.preset);
+      });
+    });
+
+    sendBtn.addEventListener('click', () => {
+      sendBtn.textContent = 'Sending...';
+      resEl.style.opacity = '0.4';
+      setTimeout(() => {
+        const randomJitter = Math.floor(Math.random() * 15) + 18;
+        timeEl.textContent = `${randomJitter} ms`;
+        resEl.style.opacity = '1';
+        sendBtn.textContent = 'Send Request';
+      }, 220);
+    });
+
+    renderPreset('possibilities');
+  </script>
+</body>
+</html>
